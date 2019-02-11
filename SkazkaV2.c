@@ -1,5 +1,6 @@
 #include "SkazkaV2.h"
 
+// Enum notes makes writing music more user friendly
 enum notes {
     C0, Cd0, D0, Dd0, E0, F0, Fd0, G0, Gd0, A0, Ad0, B0,
     C1, Cd1, D1, Dd1, E1, F1, Fd1, G1, Gd1, A1, Ad1, B1,
@@ -10,6 +11,7 @@ enum notes {
     SILENCE, END
 };
 
+// Array of frequencies to match up to notes
 const UWORD frequencies[] = {
     44, 156, 262, 363, 457, 547, 631, 710, 786, 854, 923, 986,
     1046, 1102, 1155, 1205, 1253, 1297, 1339, 1379, 1417, 1452, 1486, 1517,
@@ -19,6 +21,7 @@ const UWORD frequencies[] = {
     1985, 1988, 1992, 1995, 1998, 2001, 2004, 2006, 2009, 2011, 2013, 2015
 };
 
+// Array of notes to be played as a song
 const UBYTE music[] = {
     E4, E4, E4,
     C4, E4, G4, G3,
@@ -83,7 +86,10 @@ const UBYTE music[] = {
     END
 };
 
+// Array pointer for music
 UBYTE i = 0;
+
+// Used to divide the clock by 2
 UBYTE DIVIDER = 0;
 
 // Procedure that runs on TIM interrupt
@@ -93,11 +99,15 @@ void ISR_TIM() {
     if (DIVIDER == 1) {
         DIVIDER = 0;
 
+        // Check weather the current note is silent
         if(music[i] != SILENCE) {
+            // Set the minimum and maximum frequency to the required frequency for the note
+            // And trigger it
             NR13_REG = 0xFF & frequencies[music[i]];
             NR14_REG = (frequencies[music[i]] >> 8) | 1 << 7;
         }
 
+        // Check if the next note is the last, if so, reset array counter i
         if (music[i + 1] == END) {
             i = 0;
         } else {
@@ -208,19 +218,23 @@ void main() {
     }
 }
 
+// Intermediate procedure to load in the correct bank for the requested asset
 void setBkg(background bkg) {
     UINT8 i;
     UINT8 bank;
 
+    // Iterate over backgroundBank array till a matching background is found
     for (i = 0; i < backgroundBankLen; i++) {
         if (backgroundBank[i][0] == bkg) {
             bank = backgroundBank[i][1];
             break;
         }
     }
-
+    
+    // Load the corresponding bank
     SWITCH_ROM_MBC1(bank);
 
+    // Run the main setBkg procedure from the loaded bank
     HIDE_BKG;
     _setBkg(bkg);
     SHOW_BKG;

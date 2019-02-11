@@ -8,6 +8,7 @@
 #include "assets/backgrounds/teethout.h"
 #include "assets/backgrounds/teethsack.h"
 
+// Procedure to load background image into VRAM and map it to the screen
 void _setBkg(background bkg) {
     switch(bkg) {
         case flowerjar:

@@ -6,7 +6,8 @@
 #include "assets/backgrounds/babayaga.h"
 #include "assets/backgrounds/maincharacter.h"
 
-void __setBkg(background bkg) {
+// Procedure to load background image into VRAM and map it to the screen
+void _setBkg(background bkg) {
     switch(bkg) {
         case titlescreen:
             set_bkg_data(0x00, titlescreen_tile_count, titlescreen_tile_data);

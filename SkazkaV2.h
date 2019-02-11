@@ -1,9 +1,12 @@
 #ifndef SKAZKAV2_INCLUDE
 #define SKAZKAV2_INCLUDE
 
+// INCLUDES
 #include <gb/gb.h>
 
-// Enums
+// DEFINITIONS
+
+// Enum of every loadable background image
 typedef enum {
     titlescreen,
     stepmother,
@@ -21,8 +24,10 @@ typedef enum {
     teethsack
 } background;
 
+// Constant of the length of backgroundBank array
 #define backgroundBankLen 14
 
+// Array linking background images to there corresponding banks
 const int backgroundBank[backgroundBankLen][2] = {
     {titlescreen, 1},
     {stepmother, 1},
@@ -40,6 +45,7 @@ const int backgroundBank[backgroundBankLen][2] = {
     {teethsack, 3}
 };
 
+// PROTOTYPES
 void setBkg(background bkg);
 void _setBkg(background bkg);
 

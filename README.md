@@ -1,2 +1,2 @@
 # SkazkaV2
-" We can rebuild it, we have the technology! Stronger, Better, Cleaner."
+We can rebuild it, we have the technology! Stronger, Better, Cleaner

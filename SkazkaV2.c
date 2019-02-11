@@ -1,5 +1,4 @@
 #include "SkazkaV2.h"
-#include <stdio.h>
 
 enum notes {
     C0, Cd0, D0, Dd0, E0, F0, Fd0, G0, Gd0, A0, Ad0, B0,
@@ -85,9 +84,44 @@ const UBYTE music[] = {
 };
 
 UBYTE i = 0;
+UBYTE DIVIDER = 0;
+
+// Procedure that runs on TIM interrupt
+void ISR_TIM() {
+    
+    // Use divider to half tick frequency to 8kHz
+    if (DIVIDER == 1) {
+        DIVIDER = 0;
+
+        if(music[i] != SILENCE) {
+            NR13_REG = 0xFF & frequencies[music[i]];
+            NR14_REG = (frequencies[music[i]] >> 8) | 1 << 7;
+        }
+
+        if (music[i + 1] == END) {
+            i = 0;
+        } else {
+            i++;
+        }
+    } else {
+        DIVIDER = 1;
+    }
+}
 
 void main() {
-    DISPLAY_ON;
+    // Setup interrupts
+    disable_interrupts();
+    add_TIM(ISR_TIM);
+    enable_interrupts();
+
+    // Set TMA to cause DIV_REG to reset back to 0x00
+    TMA_REG = 0x00;
+
+    // Set clock to 4096Hz
+    TAC_REG = 0x04;
+
+    // Handle TIM interrupts
+    set_interrupts(TIM_IFLAG);
 
     // Enable sound
     NR52_REG = 0x80;
@@ -104,14 +138,16 @@ void main() {
     // Sets starting volume, and period
     NR12_REG = 3 | (0 << 3) | (4 << 4);
 
-    while(music[i] != END) {
-        if(music[i] != SILENCE) {
-            NR13_REG = 0xFF & frequencies[music[i]];
-            NR14_REG = (frequencies[music[i]] >> 8) | 1 << 7;
-        }
-    delay(250);
-    i++;
-    }
+    DISPLAY_ON;
+
+    // while(music[i] != END) {
+    //     if(music[i] != SILENCE) {
+    //         NR13_REG = 0xFF & frequencies[music[i]];
+    //         NR14_REG = (frequencies[music[i]] >> 8) | 1 << 7;
+    //     }
+    // delay(250);
+    // i++;
+    // }
 
     while (1) {
         setBkg(titlescreen);

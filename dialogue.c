@@ -15,7 +15,7 @@ extern void clearBackground();
 #define CLEAR "                  "
 
 // Create a variable to hold the current array of dialogue
-char* lines;
+int *lines;
 
 // Array counter
 UBYTE dialogueCounter = 0;
@@ -42,7 +42,7 @@ void initWin() {
 // Function to set the current array of dialogue
 void setDialogue(char* d) {
     dialogueCounter = 0;
-    lines = d;
+    lines = &d[0];
 }
 
 // Function to display the next section of dialogue
@@ -54,7 +54,14 @@ void displayNextMessage() {
 	SHOW_WIN;
 	HIDE_SPRITES;
 
-	while (strcmp(lines[dialogueCounter],"\0") != 0) {
+	while (1) {
+
+        if(strcmp(lines[dialogueCounter],"BREAK") == 0) {
+            dialogueCounter++;
+            SHOW_SPRITES;
+            HIDE_WIN;
+            return;
+        }
 
 		PRINT(2, lines[dialogueCounter]);
 
@@ -69,9 +76,6 @@ void displayNextMessage() {
         dialogueCounter++;
 
 	}
-
-	SHOW_SPRITES;
-	HIDE_WIN;
 
 }
 

@@ -120,11 +120,10 @@ void ISR_TIM() {
     }
 }
 
+// Main function
 void main() {
 
-    // Title screen
-    setBkg(titlescreen);
-
+    // Initialize the sound interrupts
     initSound();
 
     DISPLAY_ON;
@@ -132,9 +131,14 @@ void main() {
     // Game loop
     while (1) {
 
+        // Title screen
+        setBkg(titlescreen);
+
         // Check for key presses
         while (!(joypad() & J_START || joypad() & J_A)) {
             if (joypad() & J_SELECT) {
+
+                // Clear the background and show the credits
                 clearBackground();
                 initWin();
                 rollCreds();

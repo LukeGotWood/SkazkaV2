@@ -87,9 +87,8 @@ const UBYTE music[] = {
     END
 };
 
-// Array pointers
-UBYTE i;
-UBYTE j;
+// pointer to current note
+UBYTE musicPointer = 0;
 
 // Used to divide the clock by 2
 UBYTE DIVIDER = 0;
@@ -102,18 +101,18 @@ void ISR_TIM() {
         DIVIDER = 0;
 
         // Check weather the current note is silent
-        if(music[i] != SILENCE) {
+        if(music[musicPointer] != SILENCE) {
             // Set the minimum and maximum frequency to the required frequency for the note
             // And trigger it
-            NR13_REG = 0xFF & frequencies[music[i]];
-            NR14_REG = (frequencies[music[i]] >> 8) | 1 << 7;
+            NR13_REG = 0xFF & frequencies[music[musicPointer]];
+            NR14_REG = (frequencies[music[musicPointer]] >> 8) | 1 << 7;
         }
 
         // Check if the next note is the last, if so, reset array counter i
-        if (music[i + 1] == END) {
-            i = 0;
+        if (music[musicPointer + 1] == END) {
+            musicPointer = 0;
         } else {
-            i++;
+            musicPointer++;
         }
     } else {
         DIVIDER = 1;
@@ -144,7 +143,7 @@ void main() {
             if (joypad() & J_SELECT) {
 
                 // Clear the background and show the credits
-                clearBackground();
+                clearBkg();
                 initWin();
                 rollCreds();
                 HIDE_WIN;
@@ -156,6 +155,7 @@ void main() {
 
         // Run the intro
         intro();
+
 
     }
 }
@@ -194,6 +194,12 @@ void initSound() {
 
 }
 
+// Calls setBkg(background bkg) and halts exercution for d * 1000ms
+void speak(background bkg, UBYTE d) {
+    setBkg(bkg);
+    delay(d * 1000);
+}
+
 // Intermediate procedure to load in the correct bank for the requested asset
 void setBkg(background bkg) {
     UINT8 i;
@@ -217,11 +223,13 @@ void setBkg(background bkg) {
 }
 
 // Function to clear the background
-void clearBackground() {
+void clearBkg() {
+    UBYTE i;
+    UBYTE j;
 
-    for (i = 0; i < 20; i++) {
-        for (j = 0; j < 18; j++) {
-            set_bkg_tiles(i, j, 1, 1, 7);
+    for (i = 0x00; i < 0x14; i++) {
+        for (j = 0x00; j < 0x12; j++) {
+            set_bkg_tiles(i, j, 0x01, 0x01, 0xFF);
         }
     }
 }

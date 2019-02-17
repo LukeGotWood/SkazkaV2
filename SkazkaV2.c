@@ -1,5 +1,5 @@
 #include "SkazkaV2.h"
-#include "dialogue.c"
+#include "story.c"
 
 // Enum notes makes writing music more user friendly
 enum notes {
@@ -148,12 +148,9 @@ void main() {
                 setBkg(titlescreen);
             }
         }
-    
-        clearBackground();
-        initWin();
 
-        setDialogue(beginning);
-        displayNextMessage();
+        // Run the intro
+        intro();
 
     }
 }

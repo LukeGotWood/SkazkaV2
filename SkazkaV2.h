@@ -50,4 +50,9 @@ void setBkg(background bkg);
 void _setBkg(background bkg);
 void initSound();
 
+void speak(background bkg, UBYTE d) {
+    setBkg(bkg);
+    delay(d * 1000);
+}
+
 #endif

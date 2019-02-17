@@ -7,7 +7,6 @@
 
 extern void clearBackground();
 
-#include "assets/narrative.c"
 #include "assets/credits.c"
 
 // Constants
@@ -48,14 +47,22 @@ void setDialogue(char* d) {
 // Function to display the next section of dialogue
 void displayNextMessage() {
 
+    // Load ASCII values and clear background
+    initWin();
+    clearBackground();
+
+    // Clear the message window
 	PRINT(1, CLEAR);
 	PRINT(2, CLEAR);
 
+    // Show the message window and hide sprites
 	SHOW_WIN;
 	HIDE_SPRITES;
 
+    // Dialogue loop
 	while (1) {
 
+        // If we reach a dialogue break, set the counter to the next location and return
         if(strcmp(lines[dialogueCounter],"BREAK") == 0) {
             dialogueCounter++;
             SHOW_SPRITES;
@@ -63,16 +70,21 @@ void displayNextMessage() {
             return;
         }
 
+        // Print the top line of dialogue
 		PRINT(2, lines[dialogueCounter]);
 
+        // Wait for A button press
 		waitpad(J_A);
 		waitpadup();
 
+        // Clear the window
 		PRINT(1, CLEAR);
 		PRINT(2, CLEAR);
 
+        // Shift line to the top dialogue box
 		PRINT(1, lines[dialogueCounter]);
 
+        // Increment to the next line of dialogue
         dialogueCounter++;
 
 	}

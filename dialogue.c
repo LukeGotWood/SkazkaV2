@@ -68,6 +68,14 @@ void displayNextMessage() {
             return;
         }
 
+        // If we reach the end of dialogue, reset the counter
+        if(strcmp(lines[dialogueCounter],"END") == 0) {
+            dialogueCounter = 0;
+            SHOW_SPRITES;
+            HIDE_WIN;
+            return;
+        }
+
         // Print the top line of dialogue
 		PRINT(2, lines[dialogueCounter]);
 
@@ -89,53 +97,60 @@ void displayNextMessage() {
 
 }
 
-UINT8 makeDecision(UINT16 openingLine, UINT16 dummy) {
-
-    UINT8 i;
+// Function to make a decision
+UINT8 makeDecision(char* lineOne, char* lineTwo) {
+    
+    // Set the default decision to no
 	UINT8 decision = 0;
 
-	dummy = dummy; // Avoid compiler warnings
+    // Initialise the dialogue window
+    initWin();
 
+    // Reverse the pallet
 	BGP_REG = 0x1BU;
 	
 	clearBkg();
 	
+    // Show the window and the question text
 	SHOW_WIN;
-	PRINT(1, lines[openingLine]);
-	PRINT(2, lines[openingLine + 1]);
+	PRINT(1, lineOne);
+	PRINT(2, lineTwo);
 
-	for (i = 0; i < 20; i++) {
-		move_sprite(i, -1, -1);
-	}
+    // Wait for question to be asked
+    delay(1000);
 
-	SHOW_SPRITES;
+    // Output the yes and no text dialogues
 	set_bkg_tiles(5, 8, 10, 1, "YES     NO");
-	set_sprite_data(0x2F, 1, arrow);
-	set_sprite_tile(20, 0x2F);
+
+    // Move the arrow sprite to the default location
 	move_sprite(20, 116, 88);
 
+    // Show the sprite
+	SHOW_SPRITES;
+
+    // Wait for the a button to be presses
 	while (!(joypad() & J_A)) {
+        // If left button is pressed, move to the yes option and set decision true
 		if (joypad() & J_LEFT) {
 			decision = 1;
-			move_sprite(20, 56, 88);
+			//move_sprite(20, 56, 88);
 			waitpadup();
 		}
+        // If right button is pressed, move to no option and set decision false
 		if (joypad() & J_RIGHT) {
 			decision = 0;
-			move_sprite(20, 116, 88);
+			//move_sprite(20, 116, 88);
 			waitpadup();
 		}
 	}
 	waitpadup();
-	move_sprite(20, 0, 0);
 	
+    // Hide the window and sprites and reset the colour pallet to deafult
 	HIDE_WIN;
 	HIDE_SPRITES;
 	BGP_REG = 0xE4U;
 
-
-	// Bring back the sprites and the background here
-
+    // Return yes or no
 	return decision;
 
 }

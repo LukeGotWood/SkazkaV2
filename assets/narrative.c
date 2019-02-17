@@ -42,7 +42,13 @@ const char* beginning[] = {
     "SET",
     " ",
     "YOU ARE MORE",
-    "LOST THAN EVER"
+    "LOST THAN EVER",
+    "BREAK",
+    "AS YOU WALK",
+    "YOU COME ACROSS",
+    "FOOTSTEPS IN",
+    "THE GROUND",
+    "END"
 };
 
 const char* footprints[] = {

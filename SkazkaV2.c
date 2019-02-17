@@ -123,6 +123,11 @@ void ISR_TIM() {
 // Main function
 void main() {
 
+    // Load the arrow sprite
+    SPRITES_8x8;
+	set_sprite_data(0x2F, 1, arrow);
+	set_sprite_tile(20, 0x2F);
+
     // Initialize the sound interrupts
     initSound();
 

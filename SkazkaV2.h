@@ -48,5 +48,6 @@ const int backgroundBank[backgroundBankLen][2] = {
 // PROTOTYPES
 void setBkg(background bkg);
 void _setBkg(background bkg);
+void initSound();
 
 #endif

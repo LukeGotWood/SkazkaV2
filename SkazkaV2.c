@@ -1,4 +1,5 @@
 #include "SkazkaV2.h"
+#include "dialogue.c"
 
 // Enum notes makes writing music more user friendly
 enum notes {
@@ -86,8 +87,9 @@ const UBYTE music[] = {
     END
 };
 
-// Array pointer for music
-UBYTE i = 0;
+// Array pointers
+UBYTE i;
+UBYTE j;
 
 // Used to divide the clock by 2
 UBYTE DIVIDER = 0;
@@ -119,6 +121,42 @@ void ISR_TIM() {
 }
 
 void main() {
+
+    // Title screen
+    setBkg(titlescreen);
+
+    initSound();
+
+    DISPLAY_ON;
+
+    // Game loop
+    while (1) {
+
+        // Check for key presses
+        while (!(joypad() & J_START || joypad() & J_A)) {
+            if (joypad() & J_SELECT) {
+                clearBackground();
+                initWin();
+                rollCreds();
+                HIDE_WIN;
+
+                // Title screen
+                setBkg(titlescreen);
+            }
+        }
+    
+        clearBackground();
+        initWin();
+
+        setDialogue(beginning);
+        displayNextMessage();
+
+    }
+}
+
+// Function to initialize sound
+void initSound() {
+
     // Setup interrupts
     disable_interrupts();
     add_TIM(ISR_TIM);
@@ -148,74 +186,6 @@ void main() {
     // Sets starting volume, and period
     NR12_REG = 3 | (0 << 3) | (4 << 4);
 
-    DISPLAY_ON;
-
-    // while(music[i] != END) {
-    //     if(music[i] != SILENCE) {
-    //         NR13_REG = 0xFF & frequencies[music[i]];
-    //         NR14_REG = (frequencies[music[i]] >> 8) | 1 << 7;
-    //     }
-    // delay(250);
-    // i++;
-    // }
-
-    while (1) {
-        setBkg(titlescreen);
-
-        delay(1000);
-
-        setBkg(stepmother);
-
-        delay(1000);
-
-        setBkg(babayaga);
-
-        delay(1000);
-
-        setBkg(maincharacter);
-
-        delay(1000);
-
-        setBkg(woodman);
-
-        delay(1000);
-
-        setBkg(bridge);
-
-        delay(1000);
-
-        setBkg(drowning);
-
-        delay(1000);
-
-        setBkg(flower);
-
-        delay(1000);
-
-        setBkg(flowerjar);
-
-        delay(1000);
-
-        setBkg(goat);
-
-        delay(1000);
-
-        setBkg(handwithteeth);
-
-        delay(1000);
-
-        setBkg(jar);
-
-        delay(1000);
-
-        setBkg(teethout);
-
-        delay(1000);
-
-        setBkg(teethsack);
-
-        delay(1000);
-    }
 }
 
 // Intermediate procedure to load in the correct bank for the requested asset
@@ -238,4 +208,14 @@ void setBkg(background bkg) {
     HIDE_BKG;
     _setBkg(bkg);
     SHOW_BKG;
+}
+
+// Function to clear the background
+void clearBackground() {
+
+    for (i = 0; i < 20; i++) {
+        for (j = 0; j < 18; j++) {
+            set_bkg_tiles(i, j, 1, 1, 7);
+        }
+    }
 }

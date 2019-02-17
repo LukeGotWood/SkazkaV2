@@ -5,8 +5,6 @@
 #include "assets/frame.c"
 #include "assets/arrow.c"
 
-extern void clearBackground();
-
 #include "assets/credits.c"
 
 // Constants
@@ -48,9 +46,9 @@ void setDialogue(char* d) {
 void displayNextMessage() {
 
     // Load ASCII values and clear background
+	clearBkg();
     initWin();
-    clearBackground();
-
+    
     // Clear the message window
 	PRINT(1, CLEAR);
 	PRINT(2, CLEAR);
@@ -100,7 +98,7 @@ UINT8 makeDecision(UINT16 openingLine, UINT16 dummy) {
 
 	BGP_REG = 0x1BU;
 	
-	clearBackground();
+	clearBkg();
 	
 	SHOW_WIN;
 	PRINT(1, lines[openingLine]);

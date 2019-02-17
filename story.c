@@ -33,12 +33,12 @@ void intro() {
     speak(maincharacter, 1);
     displayNextMessage();
 
-    clearBackground();
+    clearBkg();
     delay(1000);
     displayNextMessage();
 
     // Needs replacing with an image of footsteps
-    clearBackground();
+    clearBkg();
     delay(5000);
     displayNextMessage();
 

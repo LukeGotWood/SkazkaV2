@@ -1,12 +1,3 @@
-#include <gb/gb.h>
-#include <string.h>
-
-#define LEN(arr) sizeof(arr)/sizeof(arr[0])
-
-#define PRINT(line, message) set_win_tiles(1, line, strlen(message), 1, message)
-
-#define CLEAR "                  "
-
 const char* credits[] = {
 
 	"LEAD PROGRAMMER",

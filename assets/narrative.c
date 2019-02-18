@@ -1,4 +1,4 @@
-const char* beginning[] = {
+const char* _beginning[] = {
     "FAR, FAR AWAY",
     "OVER HILL,",
     "OVER DALE,",
@@ -51,7 +51,7 @@ const char* beginning[] = {
     "END"
 };
 
-const char* footprints[] = {
+const char* _footprints[] = {
     "YOU ENTER A",
     "CLEARING AND",
     "SEE A JAR ON",

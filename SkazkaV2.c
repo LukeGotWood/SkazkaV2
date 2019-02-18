@@ -52,54 +52,6 @@ void speak(background bkg, UBYTE d) {
     delay(d * 1000);
 }
 
-// Intermediate procedure to load in the correct bank for the requested function
-void intro() {
-    SWITCH_ROM_MBC1(storyBank);
-    _intro();
-}
-
-// Intermediate procedure to load in the correct bank for the requested function
-void followFootsteps() {
-    SWITCH_ROM_MBC1(storyBank);
-    _followFootsteps();
-}
-
-// Intermediate procedure to load in the correct bank for the requested function
-void followBridge() {
-    SWITCH_ROM_MBC1(storyBank);
-    _followBridge();
-}
-
-// Intermediate procedure to load in the correct bank for the requested function
-void initWin() {
-    SWITCH_ROM_MBC1(storyBank);
-    _initWin();
-}
-
-// Intermediate procedure to load in the correct bank for the requested function
-void setDialogue(char* d) {
-    SWITCH_ROM_MBC1(storyBank);
-    _setDialogue(d);
-}
-
-// Intermediate procedure to load in the correct bank for the requested function
-void displayNextMessage() {
-    SWITCH_ROM_MBC1(storyBank);
-    _displayNextMessage();
-}
-
-// Intermediate procedure to load in the correct bank for the requested function
-UINT8 makeDecision(char* lineOne, char* lineTwo) {
-    SWITCH_ROM_MBC1(storyBank);
-    _makeDecision(lineOne, lineTwo);
-}
-
-// Intermediate procedure to load in the correct bank for the requested function
-void rollCreds() {
-    SWITCH_ROM_MBC1(storyBank);
-    _rollCreds();
-}
-
 // Procedure to setup and enable interrupts
 void initInterrupt() {
 

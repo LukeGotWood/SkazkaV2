@@ -1,10 +1,8 @@
 #ifndef SKAZKAV2_INCLUDE
 #define SKAZKAV2_INCLUDE
 
-// INCLUDES
+// INCLUDES - LIBARYS
 #include <gb/gb.h>
-
-#include "music.h"
 
 // DEFINITIONS
 
@@ -49,17 +47,17 @@ const int backgroundBank[backgroundBankLen][2] = {
 
 #define storyBank 4
 
+const typedef enum {
+    beginning,
+    footprints
+} dialogue;
+
+// INCLUDES - USER FILES
+#include "music.h"
+#include "story.h"
+
 // PROTOTYPES
 void speak(background bkg, UBYTE d);
-
-void intro();
-void followFootsteps();
-void followBridge();
-void initWin();
-void setDialogue(char* d);
-void displayNextMessage();
-UINT8 makeDecision(char* lineOne, char* lineTwo);
-void rollCreds();
 
 void initInterrupt();
 void clearBkg();
@@ -71,13 +69,9 @@ void setBkg(background bkg);
 void _setBkg(background bkg);
 
 // bk4
-void _intro();
-void _followFootsteps();
-void _followBridge();
 void _initWin();
-void _setDialogue(char* d);
+void _setDialogue(dialogue d);
 void _displayNextMessage();
-UINT8 _makeDecision(char* lineOne, char* lineTwo);
 void _rollCreds();
 
 #endif

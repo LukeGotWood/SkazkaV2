@@ -4,6 +4,8 @@
 // INCLUDES
 #include <gb/gb.h>
 
+#include "music.h"
+
 // DEFINITIONS
 
 // Enum of every loadable background image
@@ -46,10 +48,13 @@ const int backgroundBank[backgroundBankLen][2] = {
 };
 
 // PROTOTYPES
-void clearBkg();
+
 void speak(background bkg, UBYTE d);
+void initInterrupt();
+void clearBkg();
 void setBkg(background bkg);
+
+// Banked
 void _setBkg(background bkg);
-void initSound();
 
 #endif

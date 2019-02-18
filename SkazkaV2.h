@@ -47,14 +47,37 @@ const int backgroundBank[backgroundBankLen][2] = {
     {teethsack, 3}
 };
 
-// PROTOTYPES
+#define storyBank 4
 
+// PROTOTYPES
 void speak(background bkg, UBYTE d);
+
+void intro();
+void followFootsteps();
+void followBridge();
+void initWin();
+void setDialogue(char* d);
+void displayNextMessage();
+UINT8 makeDecision(char* lineOne, char* lineTwo);
+void rollCreds();
+
 void initInterrupt();
 void clearBkg();
 void setBkg(background bkg);
 
 // Banked
+
+// bk1-bk3
 void _setBkg(background bkg);
+
+// bk4
+void _intro();
+void _followFootsteps();
+void _followBridge();
+void _initWin();
+void _setDialogue(char* d);
+void _displayNextMessage();
+UINT8 _makeDecision(char* lineOne, char* lineTwo);
+void _rollCreds();
 
 #endif

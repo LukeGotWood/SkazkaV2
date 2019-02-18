@@ -1,10 +1,4 @@
-#include "SkazkaV2.h"
-
-// Include background assets
-#include "assets/backgrounds/bridge.h"
-#include "assets/backgrounds/woodman.h"
-#include "assets/backgrounds/drowning.h"
-#include "assets/backgrounds/flower.h"
+#include "bk2-bkg.h"
 
 // Procedure to load background image into VRAM and map it to the screen
 void _setBkg(background bkg) {

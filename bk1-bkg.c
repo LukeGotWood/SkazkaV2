@@ -1,10 +1,4 @@
-#include "SkazkaV2.h"
-
-// Include background assets
-#include "assets/backgrounds/titlescreen.h"
-#include "assets/backgrounds/stepmother.h"
-#include "assets/backgrounds/babayaga.h"
-#include "assets/backgrounds/maincharacter.h"
+#include "bk1-bkg.h"
 
 // Procedure to load background image into VRAM and map it to the screen
 void _setBkg(background bkg) {

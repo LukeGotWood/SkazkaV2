@@ -1,12 +1,4 @@
-#include "SkazkaV2.h"
-
-// Include background assets
-#include "assets/backgrounds/flowerjar.h"
-#include "assets/backgrounds/goat.h"
-#include "assets/backgrounds/handwithteeth.h"
-#include "assets/backgrounds/jar.h"
-#include "assets/backgrounds/teethout.h"
-#include "assets/backgrounds/teethsack.h"
+#include "bk3-bkg.h"
 
 // Procedure to load background image into VRAM and map it to the screen
 void _setBkg(background bkg) {

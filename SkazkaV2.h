@@ -5,6 +5,7 @@
 #include <gb/gb.h>
 
 #include "music.h"
+#include "story.h"
 
 // DEFINITIONS
 

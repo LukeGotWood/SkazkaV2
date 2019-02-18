@@ -1,5 +1,4 @@
 #include "SkazkaV2.h"
-#include "story.c"
 
 // Procedure that runs on TIM interrupt
 void ISR_TIM() {

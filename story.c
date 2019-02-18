@@ -24,7 +24,7 @@ void intro() {
     delay(5000);
     displayNextMessage();
 
-    // Load the footsteps dialogue
+    // Allow suer to make a decision to follow footsteps
     if (makeDecision("FOLLOW THE", "FOOTSTEPS?")) {
         followFootsteps();
     }
@@ -37,16 +37,109 @@ void intro() {
 // Function for the footsteps encounter with babayaga
 void followFootsteps() {
 
-    setBkg(babayaga);
+    // Load the footsteps dialogue
+    setDialogue(footprints);
+
+    clearBkg();
+    displayNextMessage();
+
+    speak(maincharacter, 1);
+    
+    clearBkg();
     delay(1000);
+    displayNextMessage();
+
+    clearBkg();
+    delay(1000);
+    displayNextMessage();
+
+    speak(maincharacter, 1);
+
+    clearBkg();
+    delay(5000);
+    speak(babayaga, 3);
+    speak(babayaga, 1);
+
+    clearBkg();
+    delay(1000);
+    displayNextMessage();
+
+    clearBkg();
+    delay(1000);
+    displayNextMessage();
+
+    delay(2000);
+
+    rollCreds();
 
 }
 
 // Function for the bridge section of the story
 void followBridge() {
 
-    setBkg(woodman);
+    // Load the bridge dialogue
+    setDialogue(river);
+
+    clearBkg();
+    displayNextMessage();
+
+    speak(bridge, 2);
+    speak(maincharacter, 1);
+
+    // Allow user to make decision to cross the bridge
+    if (makeDecision("CROSS THE", "BRIDGE?") == 0) {
+        followBridge();
+        return;
+    }
+
+    speak(bridge, 1);
+    speak(maincharacter, 1);
+    speak(bridge, 1);
+    speak(drowning, 2);
+
+    clearBkg();
     delay(1000);
+    displayNextMessage();
+
+    speak(drowning, 1);
+
+    clearBkg();
+    delay(1000);
+    displayNextMessage();
+
+    clearBkg();
+    delay(1000);
+    displayNextMessage();
+
+    // Image of eyes slowly opening to silhouette
+    clearBkg();
+    delay(1000);
+    displayNextMessage();
+
+    speak(maincharacter, 1);
+    speak(woodman, 2);
+
+    clearBkg();
+    delay(1000);
+    displayNextMessage();
+
+    speak(maincharacter, 1);
+    speak(woodman, 1);
+    speak(maincharacter, 1);
+
+    clearBkg();
+    delay(1000);
+    displayNextMessage();
+
+    speak(woodman, 1);
+
+    // Allow suer to make a decision to follow footsteps
+    if (makeDecision("DO YOU", "UNDERSTAND?")) {
+        return;
+    }
+    else {
+        return;
+    }
 
 }
 
@@ -68,6 +161,7 @@ void displayNextMessage() {
 void rollCreds() {
     SWITCH_ROM_MBC1(storyBank);
     _rollCreds();
+    HIDE_WIN;
 }
 
 UINT8 makeDecision(char* firstLine, char* secondLine) {

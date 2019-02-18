@@ -24,6 +24,10 @@ void _setDialogue(dialogue d) {
         case footprints:
             lines = &_footprints[0];
             break;
+    
+        case river:
+            lines = &_river;
+            break;
     }
     dialogueCounter = 0;
     

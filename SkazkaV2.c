@@ -31,7 +31,6 @@ void main() {
                 clearBkg();
                 initWin();
                 rollCreds();
-                HIDE_WIN;
 
                 // Title screen
                 setBkg(titlescreen);

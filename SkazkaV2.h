@@ -49,7 +49,8 @@ const int backgroundBank[backgroundBankLen][2] = {
 
 const typedef enum {
     beginning,
-    footprints
+    footprints,
+    river
 } dialogue;
 
 // INCLUDES - USER FILES

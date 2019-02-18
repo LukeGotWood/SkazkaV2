@@ -14,11 +14,6 @@ void main() {
     // Initialize the sound registers
     initSound();
 
-    // Load the arrow sprite
-    SPRITES_8x8;
-	set_sprite_data(0x2F, 1, arrow);
-	set_sprite_tile(20, 0x2F);
-
     DISPLAY_ON;
 
     // Game loop
@@ -26,6 +21,8 @@ void main() {
 
         // Title screen
         setBkg(titlescreen);
+        delay(1000);
+        setBkg(goat);
 
         // Check for key presses
         while (!(joypad() & J_START || joypad() & J_A)) {
@@ -33,8 +30,8 @@ void main() {
 
                 // Clear the background and show the credits
                 clearBkg();
-                initWin();
-                rollCreds();
+                //initWin();
+                //rollCreds();
                 HIDE_WIN;
 
                 // Title screen
@@ -43,7 +40,7 @@ void main() {
         }
 
         // Run the intro
-        intro();
+        //intro();
 
 
     }

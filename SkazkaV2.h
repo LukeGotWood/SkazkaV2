@@ -5,12 +5,11 @@
 #include <gb/gb.h>
 
 #include "music.h"
-#include "story.h"
 
 // DEFINITIONS
 
 // Enum of every loadable background image
-typedef enum {
+const typedef enum {
     titlescreen,
     stepmother,
     babayaga,

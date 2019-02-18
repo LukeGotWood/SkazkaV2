@@ -100,3 +100,61 @@ void _rollCreds() {
 	BGP_REG = 0xE4U;
 
 }
+
+// Function to make a decision
+UINT8 _makeDecision(char* lineOne, char* lineTwo) {
+    
+    // Set the default decision to no
+	UINT8 decision = 0;
+
+    // Initialise the dialogue window
+    _initWin();
+
+    // Reverse the pallet
+	BGP_REG = 0x1BU;
+	
+	clearBkg();
+	
+    // Show the window and the question text
+	SHOW_WIN;
+	PRINT(1, lineOne);
+	PRINT(2, lineTwo);
+
+    // Wait for question to be asked
+    delay(1000);
+
+    // Output the yes and no text dialogues
+	set_bkg_tiles(5, 8, 10, 1, "YES     NO");
+
+    // Move the arrow sprite to the default location
+	move_sprite(20, 116, 88);
+
+    // Show the sprite
+	SHOW_SPRITES;
+
+    // Wait for the a button to be presses
+	while (!(joypad() & J_A)) {
+        // If left button is pressed, move to the yes option and set decision true
+		if (joypad() & J_LEFT) {
+			decision = 1;
+			//move_sprite(20, 56, 88);
+			waitpadup();
+		}
+        // If right button is pressed, move to no option and set decision false
+		if (joypad() & J_RIGHT) {
+			decision = 0;
+			//move_sprite(20, 116, 88);
+			waitpadup();
+		}
+	}
+	waitpadup();
+	
+    // Hide the window and sprites and reset the colour pallet to deafult
+	HIDE_WIN;
+	HIDE_SPRITES;
+	BGP_REG = 0xE4U;
+
+    // Return yes or no
+	return decision;
+
+}

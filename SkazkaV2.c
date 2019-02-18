@@ -22,7 +22,6 @@ void main() {
         // Title screen
         setBkg(titlescreen);
         delay(1000);
-        setBkg(goat);
 
         // Check for key presses
         while (!(joypad() & J_START || joypad() & J_A)) {
@@ -42,7 +41,6 @@ void main() {
         // Run the intro
         intro();
 
-
     }
 }
 
@@ -50,6 +48,7 @@ void main() {
 void speak(background bkg, UBYTE d) {
     setBkg(bkg);
     delay(d * 1000);
+    displayNextMessage();
 }
 
 // Procedure to setup and enable interrupts

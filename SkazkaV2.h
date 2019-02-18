@@ -73,5 +73,6 @@ void _initWin();
 void _setDialogue(dialogue d);
 void _displayNextMessage();
 void _rollCreds();
+UINT8 _makeDecision(char* lineOne, char* lineTwo);
 
 #endif

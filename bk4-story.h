@@ -5,8 +5,6 @@
 
 #include "SkazkaV2.h"
 
-#include <string.h>
-
 #include "assets/narrative.c"
 #include "assets/alpha.c"
 #include "assets/frame.c"
@@ -18,12 +16,6 @@
 // Constants
 #define ASCII_START 0x20
 #define CLEAR "                  "
-
-// Macros
-
-#define LEN(arr) sizeof(arr)/sizeof(arr[0])
-
-#define PRINT(line, message) set_win_tiles(1, line, strlen(message), 1, message)
 
 // Create a variable to hold the current array of dialogue
 int *lines;

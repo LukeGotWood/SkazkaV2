@@ -7,11 +7,11 @@
 
 #include <string.h>
 
-#include "assets/narrative.c"
-#include "assets/alpha.c"
-#include "assets/frame.c"
+#include "assets/narrative/narrative_1.h"
+#include "assets/narrative/alpha.h"
+#include "assets/narrative/frame.h"
 #include "assets/arrow.c"
-#include "assets/credits.c"
+#include "assets/narrative/credits.h"
 
 // DEFINES
 

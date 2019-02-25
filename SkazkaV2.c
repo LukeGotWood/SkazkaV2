@@ -42,12 +42,6 @@ void main() {
     }
 }
 
-// Calls setBkg(background bkg) and halts exercution for d * 1000ms
-void speak(background bkg, UBYTE d) {
-    setBkg(bkg);
-    delay(d * 1000);
-}
-
 // Procedure to setup and enable interrupts
 void initInterrupt() {
 

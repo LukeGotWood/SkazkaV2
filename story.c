@@ -47,23 +47,35 @@ void intro() {
 
 }
 
-void initWin() {
-    SWITCH_ROM_MBC1(storyBank);
-    _initWin();
+// Calls setBkg(background bkg) and halts exercution for d * 1000ms
+void speak(background bkg, UBYTE d) {
+    setBkg(bkg);
+    delay(d * 1000);
 }
 
 void setDialogue(dialogue d) {
-    SWITCH_ROM_MBC1(storyBank);
+    UBYTE i;
+    UBYTE bank;
+
+    for (i = 0; i < dialogueBankLen; i++) {
+        if (dialogueBank[i][0] == d) {
+            dialogueState = dialogueBank[i][1];
+            bank = dialogueBank[i][1];
+            break;
+        }
+    }
+
+    SWITCH_ROM_MBC1(bank);
     _setDialogue(d);
 }
 
 void displayNextMessage() {
-    SWITCH_ROM_MBC1(storyBank);
+    SWITCH_ROM_MBC1(dialogueState);
     _displayNextMessage();
 }
 
 void rollCreds() {
-    SWITCH_ROM_MBC1(storyBank);
+    SWITCH_ROM_MBC1(creditsBank);
     _rollCreds();
 }
 

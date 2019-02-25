@@ -1,16 +1,23 @@
 #include "bk4-story.h"
 
 // Initialise the window layer for printing messages
-void _initWin() {
+void initWin() {
 
-	move_win(7, 112);
+    // Move the window layer to draw the frame in the correct position
+	move_win(FRAME_X, FRAME_Y);
 
 	// Load ASCII tiles and box frame into window layer
-	set_win_data(0x10, 8, frame_tile_data);
-	set_win_data(ASCII_START, 64, alpha);
+	set_win_data(FRAME_VRAM_LOC, frame_tile_data_size, frame_tile_data);
+	set_win_data(FONT_VRAM_LOC, alpha_data_size, alpha_data);
 
+    // map the frame to the window tiles
 	set_win_tiles(0, 0, 20, 4, frame_map_data);
 
+}
+
+// Procedure to push text to the frame
+void setTxt(UBYTE line, char* message) {
+    set_win_tiles(TEXT_OFFSET, line, strlen(message), TEXT_HEIGHT, message);
 }
 
 // Function to set the current array of dialogue
@@ -29,16 +36,16 @@ void _setDialogue(dialogue d) {
     
 }
 
-// Function to display the next section of dialogue
+// Procedure to display the next section of dialogue
 void _displayNextMessage() {
 
-    // Load ASCII values and clear background
+    // Clear the background and initialise the frame
 	clearBkg();
-    _initWin();
+    initWin();
     
     // Clear the message window
-	PRINT(1, CLEAR);
-	PRINT(2, CLEAR);
+	setTxt(1, CLEAR);
+	setTxt(2, CLEAR);
 
     // Show the message window and hide sprites
 	SHOW_WIN;
@@ -61,18 +68,18 @@ void _displayNextMessage() {
         }
 
         // Print the top line of dialogue
-		PRINT(2, lines[dialogueCounter]);
+		setTxt(2, lines[dialogueCounter]);
 
         // Wait for A button press
 		waitpad(J_A);
 		waitpadup();
 
         // Clear the window
-		PRINT(1, CLEAR);
-		PRINT(2, CLEAR);
+		setTxt(1, CLEAR);
+		setTxt(2, CLEAR);
 
         // Shift line to the top dialogue box
-		PRINT(1, lines[dialogueCounter]);
+		setTxt(1, lines[dialogueCounter]);
 
         // Increment to the next line of dialogue
         dialogueCounter++;
@@ -83,20 +90,29 @@ void _displayNextMessage() {
 
 void _rollCreds() {
 
+    // Initialise local counting variable
     UINT8 i;
 
-	BGP_REG = 0x1BU;
+    // Clear the background and initialise the frame
+	clearBkg();
+    initWin();
+
+    // Invert the color palette
+	BGP_REG = BGP_INV;
 
 	SHOW_WIN;
 
 	for (i = 0; i < LEN(credits); i += 2) {
-		PRINT(1, CLEAR);
-		PRINT(2, CLEAR);
-		PRINT(1, credits[i]);
-		PRINT(2, credits[i + 1]);
+		setTxt(1, CLEAR);
+		setTxt(2, CLEAR);
+		setTxt(1, credits[i]);
+		setTxt(2, credits[i + 1]);
 		delay(1500);
 	}
 
-	BGP_REG = 0xE4U;
+    HIDE_WIN;
+
+    // Revert the color palette
+	BGP_REG = BGP_STD;
 
 }

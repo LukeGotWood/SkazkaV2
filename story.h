@@ -6,10 +6,14 @@
 
 // DECLARES
 
+#define creditsBank 4
+
+int dialogueState;
+
 // PROTOTYPES
 void intro();
+void speak(background bkg, UBYTE d);
 
-void initWin();
 void setDialogue(dialogue d);
 void displayNextMessage();
 void rollCreds();

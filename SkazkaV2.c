@@ -28,11 +28,8 @@ void main() {
         while (!(joypad() & J_START || joypad() & J_A)) {
             if (joypad() & J_SELECT) {
 
-                // Clear the background and show the credits
-                clearBkg();
-                initWin();
+                // Roll the credits
                 rollCreds();
-                HIDE_WIN;
 
                 // Title screen
                 setBkg(titlescreen);
@@ -41,7 +38,6 @@ void main() {
 
         // Run the intro
         intro();
-
 
     }
 }

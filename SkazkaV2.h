@@ -45,20 +45,23 @@ const int backgroundBank[backgroundBankLen][2] = {
     {teethsack, 3}
 };
 
-#define storyBank 4
-
 const typedef enum {
     beginning,
     footprints
 } dialogue;
+
+#define dialogueBankLen 2
+
+const int dialogueBank[dialogueBankLen][2] = {
+    {beginning, 4},
+    {footprints, 4}
+};
 
 // INCLUDES - USER FILES
 #include "music.h"
 #include "story.h"
 
 // PROTOTYPES
-void speak(background bkg, UBYTE d);
-
 void initInterrupt();
 void clearBkg();
 void setBkg(background bkg);
@@ -69,7 +72,6 @@ void setBkg(background bkg);
 void _setBkg(background bkg);
 
 // bk4
-void _initWin();
 void _setDialogue(dialogue d);
 void _displayNextMessage();
 void _rollCreds();

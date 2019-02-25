@@ -16,14 +16,21 @@
 // DEFINES
 
 // Constants
-#define ASCII_START 0x20
+#define FRAME_X 7
+#define FRAME_Y 112
+#define FRAME_VRAM_LOC 0x10
+#define TEXT_OFFSET 0x01
+#define TEXT_HEIGHT 0x01
+
+#define FONT_VRAM_LOC 0x20
+
+#define BGP_STD 0xE4
+#define BGP_INV 0x1B
+
 #define CLEAR "                  "
 
 // Macros
-
 #define LEN(arr) sizeof(arr)/sizeof(arr[0])
-
-#define PRINT(line, message) set_win_tiles(1, line, strlen(message), 1, message)
 
 // Create a variable to hold the current array of dialogue
 int *lines;
@@ -31,6 +38,8 @@ int *lines;
 // Array counter
 UBYTE dialogueCounter = 0;
 
-// PROTOTYPES - Non required as they are prototyped in SkazkaV2.h
+// PROTOTYPES - _FUNCTION defined in SkazkaV2.h
+void initWin();
+void setTxt(UBYTE line, char* message);
 
 #endif

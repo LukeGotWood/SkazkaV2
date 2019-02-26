@@ -40,6 +40,5 @@ UBYTE dialogueCounter = 0;
 
 // PROTOTYPES - _FUNCTION declared in global.h
 void initWin();
-void setTxt(UBYTE line, char* message);
 
 #endif

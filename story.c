@@ -24,13 +24,13 @@ void intro() {
     delay(5000);
     displayNextMessage();
 
-    // // Load the footsteps dialogue
-    // if (makeDecision("FOLLOW THE", "FOOTSTEPS?")) {
-    //     followFootsteps();
-    // }
-    // else {
-    //     followBridge();
-    // }
+    // Load the footsteps dialogue
+    if (makeDecision("FOLLOW THE", "FOOTSTEPS?")) {
+        followFootsteps();
+    }
+    else {
+        followBridge();
+    }
 
 }
 
@@ -67,76 +67,65 @@ void rollCreds() {
     _rollCreds();
 }
 
-// // Function for the footsteps encounter with babayaga
-// void _followFootsteps() {
+// Function for the footsteps encounter with babayaga
+void followFootsteps() {
 
-//     // Load the babayaga dialogue
-//     return;
+    // Load the babayaga dialogue
+    return;
 
-// }
+}
 
-// // Function for the bridge section of the story
-// void _followBridge() {
+// Function for the bridge section of the story
+void followBridge() {
 
-//     return;
+    return;
 
-// }
+}
 
-
-// // Function to make a decision
-// UINT8 _makeDecision(char* lineOne, char* lineTwo) {
+// Function to make a decision
+UINT8 makeDecision(char* lineOne, char* lineTwo) {
     
-//     // Set the default decision to no
-// 	UINT8 decision = 0;
+    // Set the default decision to no
+	UINT8 decision = 0;
 
-//     // Initialise the dialogue window
-//     _initWin();
-
-//     // Reverse the pallet
-// 	BGP_REG = 0x1BU;
+    // Reverse the pallet
+	BGP_REG = 0x1BU;
 	
-// 	clearBkg();
+	clearBkg();
 	
-//     // Show the window and the question text
-// 	SHOW_WIN;
-// 	PRINT(1, lineOne);
-// 	PRINT(2, lineTwo);
+    // Show the window and the question text
+	SHOW_WIN;
+	setTxt(1, lineOne);
+	setTxt(2, lineTwo);
 
-//     // Wait for question to be asked
-//     delay(1000);
+    // Wait for question to be asked
+    delay(1000);
 
-//     // Output the yes and no text dialogues
-// 	set_bkg_tiles(5, 8, 10, 1, "YES     NO");
+    // Output the yes and no text dialogues
+	set_bkg_tiles(5, 8, 10, 1, "YES     NO");
 
-//     // Move the arrow sprite to the default location
-// 	move_sprite(20, 116, 88);
-
-//     // Show the sprite
-// 	SHOW_SPRITES;
-
-//     // Wait for the a button to be presses
-// 	while (!(joypad() & J_A)) {
-//         // If left button is pressed, move to the yes option and set decision true
-// 		if (joypad() & J_LEFT) {
-// 			decision = 1;
-// 			//move_sprite(20, 56, 88);
-// 			waitpadup();
-// 		}
-//         // If right button is pressed, move to no option and set decision false
-// 		if (joypad() & J_RIGHT) {
-// 			decision = 0;
-// 			//move_sprite(20, 116, 88);
-// 			waitpadup();
-// 		}
-// 	}
-// 	waitpadup();
+    // Wait for the a button to be presses
+	while (!(joypad() & J_A)) {
+        // If left button is pressed, move to the yes option and set decision true
+		if (joypad() & J_LEFT) {
+			decision = 1;
+			//move_sprite(20, 56, 88);
+			waitpadup();
+		}
+        // If right button is pressed, move to no option and set decision false
+		if (joypad() & J_RIGHT) {
+			decision = 0;
+			//move_sprite(20, 116, 88);
+			waitpadup();
+		}
+	}
+	waitpadup();
 	
-//     // Hide the window and sprites and reset the colour pallet to deafult
-// 	HIDE_WIN;
-// 	HIDE_SPRITES;
-// 	BGP_REG = 0xE4U;
+    // Hide the window and sprites and reset the colour pallet to deafult
+	HIDE_WIN;
+	BGP_REG = 0xE4U;
 
-//     // Return yes or no
-// 	return decision;
+    // Return yes or no
+	return decision;
 
-// }
+}

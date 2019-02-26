@@ -51,4 +51,6 @@ void _setDialogue(dialogue d);
 void _displayNextMessage();
 void _rollCreds();
 
+void setTxt(UBYTE line, char* message);
+
 #endif

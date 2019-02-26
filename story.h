@@ -19,4 +19,8 @@ const int dialogueBank[dialogueBankLen][2] = {
 
 // PROTOTYPES
 
+void followFootsteps();
+void followBridge();
+UINT8 makeDecision(char* lineOne, char* lineTwo);
+
 #endif

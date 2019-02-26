@@ -35,6 +35,7 @@ const typedef enum {
 
 void clearBkg();
 void setBkg(background bkg);
+void drawBkg(background bkg);
 
 void initSound();
 void play();

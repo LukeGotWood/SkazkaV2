@@ -6,6 +6,11 @@
 
 // DEFINITIONS
 
+// Flags to indicate if a new bkg needs to be drawn
+UBYTE drawBkg_FLAG = 0;
+
+int drawBkg_QUEUE;
+
 // Constant of the length of backgroundBank array
 #define backgroundBankLen 14
 

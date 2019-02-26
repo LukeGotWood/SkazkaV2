@@ -5,6 +5,17 @@ void ISR_TIM() {
     play();
 }
 
+// Procedure that runs on VBL interrupt
+void ISR_VBL() {
+    
+    // draw background
+    if (drawBkg_FLAG) {
+        setBkg(drawBkg_QUEUE);
+
+        drawBkg_FLAG = 0;
+    }
+}
+
 // Main function
 void main() {
 
@@ -20,7 +31,7 @@ void main() {
     while (1) {
 
         // Title screen
-        setBkg(titlescreen);
+        drawBkg(titlescreen);
         delay(1000);
 
         // Check for key presses
@@ -31,12 +42,12 @@ void main() {
                 rollCreds();
 
                 // Title screen
-                setBkg(titlescreen);
+                drawBkg(titlescreen);
             }
         }
 
         // Run the intro
-        intro();
+        // intro();
 
     }
 }
@@ -47,10 +58,11 @@ void initInterrupt() {
     // Setup TIM interrupts
     disable_interrupts();
     add_TIM(ISR_TIM);
+    add_VBL(ISR_VBL);
     enable_interrupts();
 
     // Handle TIM interrupts
-    set_interrupts(TIM_IFLAG);
+    set_interrupts(TIM_IFLAG | VBL_IFLAG);
 }
 
 // Procedure to clear the background
@@ -64,6 +76,11 @@ void clearBkg() {
         }
     }
 }
+
+ void drawBkg(background bkg) {
+    drawBkg_QUEUE = bkg;
+    drawBkg_FLAG = 1;
+ }
 
 // Intermediate procedure to load in the correct bank for the requested asset
 void setBkg(background bkg) {

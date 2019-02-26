@@ -18,11 +18,5 @@ const int dialogueBank[dialogueBankLen][2] = {
 };
 
 // PROTOTYPES
-void intro();
-void speak(background bkg, UBYTE d);
-
-void setDialogue(dialogue d);
-void displayNextMessage();
-void rollCreds();
 
 #endif

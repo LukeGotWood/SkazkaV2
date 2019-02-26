@@ -35,6 +35,16 @@ const typedef enum {
 void clearBkg();
 void setBkg(background bkg);
 
+void initSound();
+void play();
+
+void intro();
+void speak(background bkg, UBYTE d);
+
+void setDialogue(dialogue d);
+void displayNextMessage();
+void rollCreds();
+
 void _setBkg(background bkg);
 
 void _setDialogue(dialogue d);

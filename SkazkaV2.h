@@ -3,8 +3,6 @@
 
 // INCLUDES
 #include "global.h"
-#include "music.h"
-#include "story.h"
 
 // DEFINITIONS
 

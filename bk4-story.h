@@ -42,5 +42,4 @@ UBYTE dialogueCounter = 0;
 void initWin();
 void setTxt(UBYTE line, char* message);
 
-
 #endif

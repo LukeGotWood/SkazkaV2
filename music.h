@@ -99,7 +99,5 @@ UBYTE musicPointer = 0;
 UBYTE DIVIDER = 0;
 
 // PROTOTYPES
-void initSound();
-void play();
 
 #endif

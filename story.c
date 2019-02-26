@@ -8,25 +8,12 @@ void intro() {
     displayNextMessage();
 
     speak(maincharacter, 2);
-    displayNextMessage();
-
     speak(stepmother, 2);
-    displayNextMessage();
-
     speak(maincharacter, 1);
-    displayNextMessage();
-
     speak(stepmother, 1);
-    displayNextMessage();
-
     speak(maincharacter, 1);
-    displayNextMessage();
-
     speak(stepmother, 1);
-    displayNextMessage();
-
     speak(maincharacter, 1);
-    displayNextMessage();
 
     clearBkg();
     delay(1000);
@@ -51,6 +38,7 @@ void intro() {
 void speak(background bkg, UBYTE d) {
     setBkg(bkg);
     delay(d * 1000);
+    displayNextMessage();
 }
 
 void setDialogue(dialogue d) {

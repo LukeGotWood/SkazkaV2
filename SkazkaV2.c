@@ -22,7 +22,6 @@ void main() {
         // Title screen
         setBkg(titlescreen);
         delay(1000);
-        setBkg(goat);
 
         // Check for key presses
         while (!(joypad() & J_START || joypad() & J_A)) {

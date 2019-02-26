@@ -10,12 +10,12 @@
 
 int dialogueState;
 
-#define dialogueBankLen 2
+#define dialogueBankLen 3
 
 const int dialogueBank[dialogueBankLen][2] = {
     {beginning, 4},
     {footprints, 4},
-    {river, 4}
+    {river, 5}
 };
 
 // PROTOTYPES

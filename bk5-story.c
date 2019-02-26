@@ -1,4 +1,4 @@
-#include "bk4-story.h"
+#include "bk5-story.h"
 
 // Initialise the window layer for printing messages
 void initWin() {
@@ -24,12 +24,8 @@ void setTxt(UBYTE line, char* message) {
 void _setDialogue(dialogue d) {
     switch (d)
     {
-        case beginning:
-            lines = &_beginning[0];
-            break;
-    
-        case footprints:
-            lines = &_footprints[0];
+        case river:
+            lines = &_river[0];
             break;
     }
     dialogueCounter = 0;
@@ -85,34 +81,5 @@ void _displayNextMessage() {
         dialogueCounter++;
 
 	}
-
-}
-
-void _rollCreds() {
-
-    // Initialise local counting variable
-    UINT8 i;
-
-    // Clear the background and initialise the frame
-	clearBkg();
-    initWin();
-
-    // Invert the color palette
-	BGP_REG = BGP_INV;
-
-	SHOW_WIN;
-
-	for (i = 0; i < LEN(credits); i += 2) {
-		setTxt(1, CLEAR);
-		setTxt(2, CLEAR);
-		setTxt(1, credits[i]);
-		setTxt(2, credits[i + 1]);
-		delay(1500);
-	}
-
-    HIDE_WIN;
-
-    // Revert the color palette
-	BGP_REG = BGP_STD;
 
 }

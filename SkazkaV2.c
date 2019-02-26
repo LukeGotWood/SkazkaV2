@@ -39,7 +39,7 @@ void main() {
             if (joypad() & J_SELECT) {
 
                 // Roll the credits
-                rollCreds();
+                 rollCreds();
 
                 // Title screen
                 drawBkg(titlescreen);
@@ -47,7 +47,7 @@ void main() {
         }
 
         // Run the intro
-        // intro();
+        intro();
 
     }
 }

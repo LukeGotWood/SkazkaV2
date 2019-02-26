@@ -14,7 +14,8 @@ int dialogueState;
 
 const int dialogueBank[dialogueBankLen][2] = {
     {beginning, 4},
-    {footprints, 4}
+    {footprints, 4},
+    {river, 4}
 };
 
 // PROTOTYPES

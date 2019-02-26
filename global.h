@@ -27,7 +27,8 @@ const typedef enum {
 // Enum of every loadable dialogue options
 const typedef enum {
     beginning,
-    footprints
+    footprints,
+    river
 } dialogue;
 
 // PROTOTYPES

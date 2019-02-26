@@ -3,7 +3,7 @@
 
 // INCLUDES
 
-#include "SkazkaV2.h"
+#include "global.h"
 
 #include <string.h>
 
@@ -38,8 +38,14 @@ int *lines;
 // Array counter
 UBYTE dialogueCounter = 0;
 
-// PROTOTYPES - _FUNCTION defined in SkazkaV2.h
+// PROTOTYPES
 void initWin();
 void setTxt(UBYTE line, char* message);
+
+void _setDialogue(dialogue d);
+void _displayNextMessage();
+void _rollCreds();
+
+extern clearBkg();
 
 #endif

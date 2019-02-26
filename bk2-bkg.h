@@ -3,7 +3,7 @@
 
 // INCLUDES
 
-#include "SkazkaV2.h"
+#include "global.h"
 
 // Include background assets
 #include "assets/backgrounds/bridge.h"

@@ -2,7 +2,7 @@
 #define MUSIC_INCLUDE
 
 // INCLUDES
-#include "SkazkaV2.h"
+#include "global.h"
 
 // DEFINES
 

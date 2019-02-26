@@ -2,7 +2,7 @@
 #define BK1_INCLUDE
 
 // INCLUDES
-#include "SkazkaV2.h"
+#include "global.h"
 
 // Include background assets
 #include "assets/backgrounds/titlescreen.h"

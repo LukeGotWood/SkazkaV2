@@ -31,17 +31,5 @@ const int backgroundBank[backgroundBankLen][2] = {
 
 // PROTOTYPES
 void initInterrupt();
-void clearBkg();
-void setBkg(background bkg);
-
-// Banked
-
-// bk1-bk3
-extern void _setBkg(background bkg);
-
-// bk4
-extern void _setDialogue(dialogue d);
-extern void _displayNextMessage();
-extern void _rollCreds();
 
 #endif

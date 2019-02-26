@@ -25,11 +25,4 @@ void setDialogue(dialogue d);
 void displayNextMessage();
 void rollCreds();
 
-extern void _setDialogue(dialogue d);
-extern void _displayNextMessage();
-extern void _rollCreds();
-
-extern void clearBkg();
-extern void setBkg(background bkg);
-
 #endif

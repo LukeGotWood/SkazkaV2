@@ -38,14 +38,9 @@ int *lines;
 // Array counter
 UBYTE dialogueCounter = 0;
 
-// PROTOTYPES
+// PROTOTYPES - _FUNCTION declared in global.h
 void initWin();
 void setTxt(UBYTE line, char* message);
 
-void _setDialogue(dialogue d);
-void _displayNextMessage();
-void _rollCreds();
-
-extern clearBkg();
 
 #endif
